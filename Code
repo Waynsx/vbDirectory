@@ -25,8 +25,13 @@ strIniA = New String(" ", 100)
 GetPrivateProfileString("Section", "Step A", "", strIniA, 100, Application.StartupPath + "\a.ini")
 MessageBox.Show(strIniA)
 
-
 Dim strIniB As String
 strIniB = New String(" ", 100)
 GetPrivateProfileString("Section", "Step B", "", strIniB, 100, Application.StartupPath + "\a.ini")
 MessageBox.Show(strIniB)
+
+
+''--------------------------
+Dim strFileName As String = "F:\AAAA.txt"
+Dim fileInfo As New FileInfo(strFileName)
+fileInfo.Attributes = FileAttributes.Normal
