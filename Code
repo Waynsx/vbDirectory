@@ -1,0 +1,32 @@
+
+If Dir("F:\dir-demo", vbDirectory) = "" Then '判斷資料夾是否存在
+            MkDir("F:\dir-demo")   '建立資料夾
+End If
+
+''--------------------------
+Private Declare Function GetPrivateProfileString Lib "kernel32" Alias "GetPrivateProfileStringA" (
+ByVal lpApplicationName As String,
+ByVal lpKeyName As String, ByVal lpdefault As String,
+ByVal lpretrunedstring As String, ByVal nSize As Int32,
+ByVal lpFilename As String) As Int32
+
+Private Declare Function WritePrivateProfileString Lib "kernel32" Alias "WritePrivateProfileStringA" (
+ByVal lpApplicationName As String,
+ByVal lpKeyName As String, ByVal lpString As String,
+ByVal lpFilename As String) As Int32
+
+
+Dim a = Application.StartupPath + "\a.ini"
+WritePrivateProfileString("Section", "Step A", "88888888", a)
+WritePrivateProfileString("Section", "Step B", "666666", a)
+
+Dim strIniA As String
+strIniA = New String(" ", 100)
+GetPrivateProfileString("Section", "Step A", "", strIniA, 100, Application.StartupPath + "\a.ini")
+MessageBox.Show(strIniA)
+
+
+Dim strIniB As String
+strIniB = New String(" ", 100)
+GetPrivateProfileString("Section", "Step B", "", strIniB, 100, Application.StartupPath + "\a.ini")
+MessageBox.Show(strIniB)
